@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">SuperHeroApp</string>
+    <string name="marvel_super_heroes">Marvel Super Heroes</string>
+    <string name="todo">TODO</string>
 </resources>
