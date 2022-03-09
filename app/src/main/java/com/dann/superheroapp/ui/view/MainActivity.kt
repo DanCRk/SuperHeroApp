@@ -1,7 +1,8 @@
-package com.dann.superheroapp
+package com.dann.superheroapp.ui.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.dann.superheroapp.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
