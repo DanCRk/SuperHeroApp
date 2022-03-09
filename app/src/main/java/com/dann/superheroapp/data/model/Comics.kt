@@ -2,7 +2,6 @@ package com.dann.superheroapp.data.model
 
 import java.io.Serializable
 
-data class Thumbnail (
-    val path:String,
-    val extension:String
+data class Comics(
+    val items: List<Comic>
 ):Serializable

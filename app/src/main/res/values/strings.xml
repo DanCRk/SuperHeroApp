@@ -2,4 +2,8 @@
     <string name="app_name">SuperHeroApp</string>
     <string name="marvel_super_heroes">Marvel Super Heroes</string>
     <string name="todo">TODO</string>
+    <string name="description">Description</string>
+    <string name="no_description">No description</string>
+    <string name="comics">Comics</string>
+    <string name="no_comics">No Comics</string>
 </resources>

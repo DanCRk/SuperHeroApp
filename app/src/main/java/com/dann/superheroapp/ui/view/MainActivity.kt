@@ -1,6 +1,7 @@
 package com.dann.superheroapp.ui.view
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -8,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.dann.superheroapp.data.adapters.RecyclerAdapter
+import com.dann.superheroapp.data.adapters.reciclerview.RecyclerAdapter
 import com.dann.superheroapp.data.model.Hero
 import com.dann.superheroapp.databinding.ActivityMainBinding
 import com.dann.superheroapp.ui.viewmodel.HeroesViewModel
@@ -45,23 +46,23 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        viewModel.progressBar.observe(this){
+        viewModel.progressBar.observe(this) {
             binding.progressBar.isVisible = it
         }
 
-        viewModel.loadingMoreHeroes.observe(this){
+        viewModel.loadingMoreHeroes.observe(this) {
             binding.progressBarMore.isVisible = it
         }
 
         cargarMas()
     }
 
-    private fun cargarMas(){
-        binding.rvHeroes.addOnScrollListener(object : RecyclerView.OnScrollListener(){
+    private fun cargarMas() {
+        binding.rvHeroes.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
-                if (!recyclerView.canScrollVertically(1)){
-                    offset +=20
+                if (!recyclerView.canScrollVertically(1)) {
+                    offset += 20
                     viewModel.loadMore(offset)
                 }
             }
@@ -71,17 +72,28 @@ class MainActivity : AppCompatActivity() {
     @SuppressLint("NotifyDataSetChanged")
     private fun setReciclerView() {
         adapter = RecyclerAdapter(heroList, this) { onItemSelectedListener(it) }
-        binding.rvHeroes.layoutManager = GridLayoutManager(this,3)
+        binding.rvHeroes.layoutManager = GridLayoutManager(this, 3)
         binding.rvHeroes.adapter = adapter
         adapter.notifyDataSetChanged()
     }
 
     private fun onItemSelectedListener(hero: Hero) {
+        val intent = Intent(this, HeroActivity::class.java)
+        intent.putExtra("HERO",hero)
+        startActivity(intent)
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    private fun refrescarRecyclerView(last:Int){ if(!heroList.isNullOrEmpty()){ adapter.notifyItemInserted(last) }else{ showError() } }
+    private fun refrescarRecyclerView(last: Int) {
+        if (!heroList.isNullOrEmpty()) {
+            adapter.notifyItemInserted(last)
+        } else {
+            showError()
+        }
+    }
 
-    private fun showError(){ Toast.makeText(this, "Ha ocurrido un error", Toast.LENGTH_SHORT).show() }
+    private fun showError() {
+        Toast.makeText(this, "Ha ocurrido un error", Toast.LENGTH_SHORT).show()
+    }
 
 }
