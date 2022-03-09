@@ -1,4 +1,4 @@
-package com.dann.superheroapp.data.adapters
+package com.dann.superheroapp.data.adapters.reciclerview
 
 import android.content.Context
 import android.view.LayoutInflater
