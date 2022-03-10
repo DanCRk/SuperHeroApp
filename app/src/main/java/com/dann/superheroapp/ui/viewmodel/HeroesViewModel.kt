@@ -17,6 +17,7 @@ class HeroesViewModel @Inject constructor(
     val heroesViewModel = MutableLiveData<List<Hero>>()
     val progressBar = MutableLiveData<Boolean>()
     val loadingMoreHeroes = MutableLiveData<Boolean>()
+    val noMoreConsults = MutableLiveData<String>()
 
     fun onCreate() {
         viewModelScope.launch {
@@ -25,6 +26,8 @@ class HeroesViewModel @Inject constructor(
                 getAllHeroes("v1/public/characters?ts=1&limit=20&offset=0&apikey=6297766f747707d8733f11ec846ba65c&hash=9cae473e2dbf1e5c71aed13ab674a620")
             if (!result.isNullOrEmpty()) {
                 heroesViewModel.postValue(result)
+            }else{
+                noMoreConsults.postValue("You have exceeded your rate limit.  Please try again later.")
             }
             progressBar.postValue(false)
         }

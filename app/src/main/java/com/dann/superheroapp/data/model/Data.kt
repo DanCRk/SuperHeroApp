@@ -1,5 +1,5 @@
 package com.dann.superheroapp.data.model
 
 data class Data(
-    val results:List<Hero>
+    val results:List<Hero> = emptyList()
 )

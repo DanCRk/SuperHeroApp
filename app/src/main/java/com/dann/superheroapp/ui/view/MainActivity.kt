@@ -54,6 +54,10 @@ class MainActivity : AppCompatActivity() {
             binding.progressBarMore.isVisible = it
         }
 
+        viewModel.noMoreConsults.observe(this){
+            Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
+        }
+
         cargarMas()
     }
 
