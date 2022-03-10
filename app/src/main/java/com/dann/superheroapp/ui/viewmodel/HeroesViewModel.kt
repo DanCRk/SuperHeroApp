@@ -18,25 +18,27 @@ class HeroesViewModel @Inject constructor(
     val progressBar = MutableLiveData<Boolean>()
     val loadingMoreHeroes = MutableLiveData<Boolean>()
 
-    fun onCreate(){
+    fun onCreate() {
         viewModelScope.launch {
             progressBar.postValue(true)
-            val result = getAllHeroes("v1/public/characters?ts=1&limit=20&offset=0&apikey=6297766f747707d8733f11ec846ba65c&hash=9cae473e2dbf1e5c71aed13ab674a620")
-            if(!result.isNullOrEmpty()){
+            val result =
+                getAllHeroes("v1/public/characters?ts=1&limit=20&offset=0&apikey=6297766f747707d8733f11ec846ba65c&hash=9cae473e2dbf1e5c71aed13ab674a620")
+            if (!result.isNullOrEmpty()) {
                 heroesViewModel.postValue(result)
-                progressBar.postValue(false)
             }
+            progressBar.postValue(false)
         }
     }
 
-    fun loadMore(offset:Int){
+    fun loadMore(offset: Int) {
         viewModelScope.launch {
             loadingMoreHeroes.postValue(true)
-            val result = getAllHeroes("v1/public/characters?ts=1&limit=20&offset=${offset}&apikey=6297766f747707d8733f11ec846ba65c&hash=9cae473e2dbf1e5c71aed13ab674a620")
-            if(!result.isNullOrEmpty()){
+            val result =
+                getAllHeroes("v1/public/characters?ts=1&limit=20&offset=${offset}&apikey=6297766f747707d8733f11ec846ba65c&hash=9cae473e2dbf1e5c71aed13ab674a620")
+            if (!result.isNullOrEmpty()) {
                 heroesViewModel.postValue(result)
-                loadingMoreHeroes.postValue(false)
             }
+            loadingMoreHeroes.postValue(false)
         }
     }
 
