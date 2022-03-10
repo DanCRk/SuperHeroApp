@@ -6,7 +6,12 @@ import javax.inject.Inject
 
 class GetComicImagesUseCase @Inject constructor(private val repository: Repository){
     suspend operator fun invoke(url:String): Images {
-        return repository.getImage(url)
+        val comicImages = repository.getImage(url)
+        return if (comicImages.path != "_"){
+            comicImages
+        }else{
+            Images()
+        }
     }
 
 }
