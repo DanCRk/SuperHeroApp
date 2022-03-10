@@ -19,7 +19,7 @@ class HeroDetailsViewModel @Inject constructor(
         viewModelScope.launch {
             if (url.isNotEmpty()) {
                 val result = getComicImagesUseCase(url)
-                if (!result.equals(null)) {
+                if (result != Images()) {
                     comicsViewModel.postValue(result)
                 }
             }
