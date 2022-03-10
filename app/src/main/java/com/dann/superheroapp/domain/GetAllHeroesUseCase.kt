@@ -7,7 +7,12 @@ import javax.inject.Inject
 class GetAllHeroesUseCase @Inject constructor(private val repository: Repository){
 
     suspend operator fun invoke(url:String):List<Hero>{
-        return repository.getHeroes(url)
+        val heroes = repository.getHeroes(url)
+        return if (!heroes.isNullOrEmpty()){
+            heroes
+        }else{
+            emptyList()
+        }
     }
 
 }
