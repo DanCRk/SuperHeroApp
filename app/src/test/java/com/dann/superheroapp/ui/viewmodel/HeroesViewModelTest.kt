@@ -57,6 +57,22 @@ class HeroesViewModelTest {
         }
 
     @Test
+    fun `when the viewmodel is created at the firts time, get a empty list`() =
+        runBlockingTest {
+            //Given
+            val myHeroesList = emptyList<Hero>()
+            coEvery { getHeroesUseCase(any()) } returns myHeroesList
+
+            //when
+            heroesViewModel.onCreate()
+
+            //then
+            coVerify (exactly = 1){ getHeroesUseCase(any()) }
+            assert(null == heroesViewModel.heroesViewModel.value)
+            assert(false==heroesViewModel.progressBar.value)
+        }
+
+    @Test
     fun `when the viewmodel is called, get a list with the next 20 heroes, then set the value`() =
         runBlockingTest {
             //Given
@@ -69,6 +85,22 @@ class HeroesViewModelTest {
             //then
             coVerify (exactly = 1){ getHeroesUseCase(any()) }
             assert(myHeroesList == heroesViewModel.heroesViewModel.value)
+            assert(false == heroesViewModel.loadingMoreHeroes.value)
+        }
+
+    @Test
+    fun `when the viewmodel is called, get a empty list`() =
+        runBlockingTest {
+            //Given
+            val myHeroesList = emptyList<Hero>()
+            coEvery { getHeroesUseCase(any()) } returns myHeroesList
+
+            //when
+            heroesViewModel.loadMore(20)
+
+            //then
+            coVerify (exactly = 1){ getHeroesUseCase(any()) }
+            assert(null == heroesViewModel.heroesViewModel.value)
             assert(false == heroesViewModel.loadingMoreHeroes.value)
         }
 }
