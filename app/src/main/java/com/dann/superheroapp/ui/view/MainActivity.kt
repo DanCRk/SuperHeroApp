@@ -40,9 +40,9 @@ class MainActivity : AppCompatActivity() {
                 for (hero in heroesList) {
                     if (!heroList.contains(hero)) {
                         heroList.add(hero)
-                        refrescarRecyclerView(heroList.size)
                     }
                 }
+                refrescarRecyclerView()
             }
         }
 
@@ -79,14 +79,14 @@ class MainActivity : AppCompatActivity() {
 
     private fun onItemSelectedListener(hero: Hero) {
         val intent = Intent(this, HeroActivity::class.java)
-        intent.putExtra("HERO",hero)
+        intent.putExtra("HERO", hero)
         startActivity(intent)
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    private fun refrescarRecyclerView(last: Int) {
+    private fun refrescarRecyclerView() {
         if (!heroList.isNullOrEmpty()) {
-            adapter.notifyItemInserted(last)
+            adapter.notifyDataSetChanged()
         } else {
             showError()
         }

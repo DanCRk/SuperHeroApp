@@ -9,5 +9,6 @@ data class Hero(
     val description:String,
     val comics:Comics,
     val title:String,
+    val urls:List<Urls>,
     val images:List<Images>
 ):Serializable
