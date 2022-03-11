@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    tools:context=".ui.view.dialogs.AddPhotoDialogFragment">
+
+    <LinearLayout
+        android:id="@+id/llt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="50dp"
+        android:background="@drawable/redondear_bg"
+        android:orientation="vertical"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:id="@+id/containerAddFoto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:padding="30dp"
+            android:foreground="?attr/selectableItemBackgroundBorderless"
+            android:orientation="vertical"
+            tools:ignore="UnusedAttribute,UseCompoundDrawables">
+
+            <ImageView
+                android:id="@+id/addFoto"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/circulo"
+                android:padding="14dp"
+                android:src="@drawable/ic_add_foto"
+                app:tint="@color/primary_light"
+                android:contentDescription="@string/add_photo" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center_horizontal"
+                android:text="@string/add_photo"
+                android:textAlignment="center"
+                android:textColorHint="@color/text_color"
+                android:textSize="17sp" />
+        </LinearLayout>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/addImage"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="30dp"
+            android:visibility="gone"
+            app:cardCornerRadius="30dp"
+            app:cardElevation="0dp">
+
+            <ImageView
+                android:id="@+id/addImageOnContainer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                tools:ignore="UnusedAttribute"
+                android:contentDescription="@string/add_photo" />
+
+        </androidx.cardview.widget.CardView>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:orientation="horizontal">
+
+
+            <Button
+                android:id="@+id/cancelButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/transparent"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                android:text="@string/cancel"
+                android:textColor="@color/primary_light"
+                android:textSize="15sp"
+                tools:ignore="UnusedAttribute"
+                style="?android:attr/buttonBarButtonStyle" />
+
+            <Button
+                android:id="@+id/submitButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/transparent"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                android:text="@string/add"
+                android:textColor="@color/primary_light"
+                android:textSize="15sp"
+                tools:ignore="UnusedAttribute"
+                style="?android:attr/buttonBarButtonStyle" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="@drawable/circulo"
+        android:padding="10dp"
+        android:src="@drawable/ic_add_foto"
+        app:layout_constraintBottom_toTopOf="@id/llt"
+        app:layout_constraintEnd_toEndOf="@id/llt"
+        app:layout_constraintStart_toStartOf="@id/llt"
+        app:layout_constraintTop_toTopOf="@id/llt"
+        app:tint="@color/primary"
+        android:contentDescription="@string/add_photo" />
+</androidx.constraintlayout.widget.ConstraintLayout>
