@@ -7,29 +7,29 @@
     tools:context=".ui.view.fragments.ProfileFragment">
 
     <androidx.cardview.widget.CardView
+        android:layout_marginTop="20dp"
         android:id="@+id/cardView"
         android:layout_width="300dp"
         android:layout_height="300dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         android:background="@color/secondary_light"
         android:clickable="true"
+        android:focusable="true"
         android:foreground="?attr/selectableItemBackgroundBorderless"
         app:cardCornerRadius="100dp"
         app:cardElevation="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:focusable="true">
+        app:layout_constraintTop_toTopOf="parent">
 
 
         <ImageView
             android:id="@+id/img_perfil_llena"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            android:foreground="?attr/selectableItemBackgroundBorderless"
             android:background="@drawable/ic_person"
-            tools:ignore="ContentDescription,UnusedAttribute"/>
+            android:foreground="?attr/selectableItemBackgroundBorderless"
+            android:scaleType="centerCrop"
+            tools:ignore="ContentDescription,UnusedAttribute" />
 
     </androidx.cardview.widget.CardView>
 
