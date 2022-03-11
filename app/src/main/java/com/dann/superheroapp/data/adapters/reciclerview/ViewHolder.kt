@@ -11,16 +11,14 @@ class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
     private val binding = ItemHeroBinding.bind(view)
 
-    fun bind(hero: Hero, context: Context,onClickListener: (Hero) -> Unit) {
+    fun bind(hero: Hero, context: Context, onClickListener: (Hero) -> Unit) {
         val url = "${hero.thumbnail.path}/standard_xlarge.${hero.thumbnail.extension}"
         binding.nameHero.text = hero.name
-        if (hero.thumbnail.path.split("/").last() != "image_not_available") {
-            Glide
-                .with(context)
-                .load(url.replace("http","https"))
-                .centerCrop()
-                .into(binding.imageHero)
-        }
+        Glide
+            .with(context)
+            .load(url.replace("http", "https"))
+            .centerCrop()
+            .into(binding.imageHero)
 
         binding.card.setOnClickListener {
             onClickListener(hero)

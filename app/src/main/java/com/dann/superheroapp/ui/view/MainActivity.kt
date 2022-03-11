@@ -25,6 +25,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var adapter: RecyclerAdapter
     private var offset = 0
     private val heroList = mutableListOf<Hero>()
+    private val heroNameList = mutableListOf<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,14 +37,12 @@ class MainActivity : AppCompatActivity() {
         viewModel.onCreate()
 
         viewModel.heroesViewModel.observe(this) { heroesList ->
-            if (!heroesList.isNullOrEmpty()) {
-                for (hero in heroesList) {
-                    if (!heroList.contains(hero)) {
-                        heroList.add(hero)
-                    }
+            for (hero in heroesList) {
+                if (!heroList.contains(hero)) {
+                    heroList.add(hero)
                 }
-                refrescarRecyclerView()
             }
+            refrescarRecyclerView()
         }
 
         viewModel.progressBar.observe(this) {
