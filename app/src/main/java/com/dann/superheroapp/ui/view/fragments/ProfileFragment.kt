@@ -5,9 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.DialogFragment
-import com.dann.superheroapp.R
 import com.dann.superheroapp.databinding.FragmentProfileBinding
 import com.dann.superheroapp.ui.view.dialogs.AddPhotoDialogFragment
 

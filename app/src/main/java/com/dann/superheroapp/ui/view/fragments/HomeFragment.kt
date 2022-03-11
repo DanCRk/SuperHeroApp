@@ -44,32 +44,32 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setReciclerView()
 
-//        if (heroList.isNullOrEmpty()){
-//            //viewModel.onCreate()
-//        }
-//
-//        viewModel.heroesViewModel.observe(viewLifecycleOwner) { heroesList ->
-//            for (hero in heroesList) {
-//                if (!heroList.contains(hero)) {
-//                    heroList.add(hero)
-//                }
-//            }
-//            refrescarRecyclerView()
-//        }
-//
-//        viewModel.progressBar.observe(viewLifecycleOwner) {
-//            binding.progressBar.isVisible = it
-//        }
-//
-//        viewModel.loadingMoreHeroes.observe(viewLifecycleOwner) {
-//            binding.progressBarMore.isVisible = it
-//        }
-//
-//        viewModel.noMoreConsults.observe(viewLifecycleOwner){
-//            Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
-//        }
-//
-//        //cargarMas()
+        if (heroList.isNullOrEmpty()){
+            viewModel.onCreate()
+        }
+
+        viewModel.heroesViewModel.observe(viewLifecycleOwner) { heroesList ->
+            for (hero in heroesList) {
+                if (!heroList.contains(hero)) {
+                    heroList.add(hero)
+                }
+            }
+            refrescarRecyclerView()
+        }
+
+        viewModel.progressBar.observe(viewLifecycleOwner) {
+            binding.progressBar.isVisible = it
+        }
+
+        viewModel.loadingMoreHeroes.observe(viewLifecycleOwner) {
+            binding.progressBarMore.isVisible = it
+        }
+
+        viewModel.noMoreConsults.observe(viewLifecycleOwner){
+            Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
+        }
+
+        cargarMas()
     }
 
     private fun cargarMas() {
