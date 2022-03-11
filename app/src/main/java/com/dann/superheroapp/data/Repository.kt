@@ -11,15 +11,19 @@ class Repository @Inject constructor(private val apiClient: MarvelService) {
         val response = apiClient.getHeroes(url)
         return if (response.responseCode != "RequestThrottled") {
             response.data.results
-        }else{
+        } else {
             emptyList()
         }
     }
 
     suspend fun getImage(url: String): Images {
         val response = apiClient.getHeroes(url)
-        response.data.results.first().images.first().name = response.data.results.first().title
-        return response.data.results.first().images.first()
+        return if (response.responseCode != "RequestThrottled" && response.data.results.first().images.isNotEmpty()) {
+            response.data.results.first().images.first().name = response.data.results.first().title
+            response.data.results.first().images.first()
+        } else {
+            Images()
+        }
 
     }
 

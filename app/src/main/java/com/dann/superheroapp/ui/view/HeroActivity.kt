@@ -51,36 +51,33 @@ class HeroActivity : AppCompatActivity() {
         goToDetails()
 
         heroViewModel.comicsViewModel.observe(this) {
-            if (it.extension != "_") {
-                if (it.path.split("/").last() != "image_not_available") {
-                    val url =
-                        "${it.path}/standard_fantastic.${it.extension}".replace(
-                            "http",
-                            "https"
-                        )
-                    val comicImage = Images(url, "", it.name)
-                    comicImageList.add(comicImage)
-                    binding.noComics.isVisible = false
-                    refresh()
-                }
-            }
+            val url =
+                "${it.path}/standard_fantastic.${it.extension}".replace(
+                    "http",
+                    "https"
+                )
+            val comicImage = Images(url, "", it.name)
+            comicImageList.add(comicImage)
+            binding.noComics.isVisible = false
+            refresh()
         }
     }
 
-    private fun goToDetails(){
+    private fun goToDetails() {
         binding.fav.setOnClickListener {
             val uri = hero.urls.first().url
-            if(!uri.equals(null)){
+            if (!uri.equals(null)) {
                 val intent = Intent(Intent.ACTION_VIEW, uri.toUri())
                 startActivity(intent)
-            }else{
-                Toast.makeText(this, "No hay pagina web en este momento!", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this, "No hay pagina web en este momento!", Toast.LENGTH_SHORT)
+                    .show()
             }
         }
     }
 
     private fun setUpViewPager() {
-        adapter = SliderAdapter(comicImageList) { onItemListener(it) }
+        adapter = SliderAdapter(comicImageList, this@HeroActivity) { onItemListener(it) }
         binding.sliderComics.adapter = adapter
         binding.sliderComics.clipToPadding = false
         binding.sliderComics.clipChildren = false
@@ -119,8 +116,8 @@ class HeroActivity : AppCompatActivity() {
     private fun setInformationInViews() {
         if (heroUrl.split("/").last() != "image_not_available") {
             val uri = "$heroUrl/standard_fantastic.${hero.thumbnail.extension}".replace(
-            "http",
-            "https"
+                "http",
+                "https"
             )
             Glide.with(this).load(uri).centerCrop().into(binding.imgHeroDetail)
         } else {
